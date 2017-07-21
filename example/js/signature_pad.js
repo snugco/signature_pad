@@ -1,6 +1,6 @@
 /*!
  * Signature Pad v2.2.0
- * https://github.com/szimek/signature_pad
+ * https://github.com/snugco/signature_pad
  *
  * Copyright 2017 Szymon Nowak
  * Released under the MIT license
@@ -494,7 +494,7 @@ SignaturePad.prototype._toSVG = function () {
 
   var pointGroups = this._data;
   var canvas = this._canvas;
-  var ratio = Math.max(window.devicePixelRatio || 1, 1);
+  var ratio = 1;
   var minX = 0;
   var minY = 0;
   var maxX = canvas.width / ratio;
