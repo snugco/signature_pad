@@ -1,5 +1,5 @@
 /*!
- * Signature Pad v2.2.0
+ * Signature Pad v2.2.2
  * https://github.com/snugco/signature_pad
  *
  * Copyright 2017 Szymon Nowak

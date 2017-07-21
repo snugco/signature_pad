@@ -1,10 +1,10 @@
 {
   "name": "snugco_signature_pad",
   "description": "Library for drawing smooth signatures.",
-  "version": "2.2.0",
+  "version": "2.2.2",
   "homepage": "https://github.com/snugco/signature_pad",
   "author": {
-    "name": "George El-Khoury",
+    "name": "Szymon Nowak",
     "email": "george@snug.co",
     "url": "https://github.com/snugco"
   },
