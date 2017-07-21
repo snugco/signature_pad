@@ -1,6 +1,6 @@
 /*!
- * Signature Pad v2.2.4
- * https://github.com/snugco/signature_pad
+ * Signature Pad v2.2.5
+ * https://github.com/szimek/signature_pad
  *
  * Copyright 2017 Szymon Nowak
  * Released under the MIT license

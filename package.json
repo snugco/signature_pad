@@ -1,12 +1,12 @@
 {
   "name": "snugco_signature_pad",
   "description": "Library for drawing smooth signatures.",
-  "version": "2.2.4",
-  "homepage": "https://github.com/snugco/signature_pad",
+  "version": "2.2.5",
+  "homepage": "https://github.com/szimek/signature_pad",
   "author": {
     "name": "Szymon Nowak",
-    "email": "george@snug.co",
-    "url": "https://github.com/snugco"
+    "email": "szimek@gmail.com",
+    "url": "https://github.com/szimek"
   },
   "license": "MIT",
   "main": "dist/signature_pad.js",
