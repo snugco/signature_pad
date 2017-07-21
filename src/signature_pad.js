@@ -94,7 +94,7 @@ SignaturePad.prototype.clear = function () {
 
 SignaturePad.prototype.fromDataURL = function (dataUrl, options = {}) {
   const image = new Image();
-  const ratio = options.ratio || window.devicePixelRatio || 1;
+  const ratio = 1;
   const width = options.width || (this._canvas.width / ratio);
   const height = options.height || (this._canvas.height / ratio);
 

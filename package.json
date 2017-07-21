@@ -1,7 +1,7 @@
 {
   "name": "snugco_signature_pad",
   "description": "Library for drawing smooth signatures.",
-  "version": "2.2.2",
+  "version": "2.2.4",
   "homepage": "https://github.com/snugco/signature_pad",
   "author": {
     "name": "Szymon Nowak",

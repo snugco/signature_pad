@@ -1,5 +1,5 @@
 /*!
- * Signature Pad v2.2.2
+ * Signature Pad v2.2.4
  * https://github.com/snugco/signature_pad
  *
  * Copyright 2017 Szymon Nowak
@@ -202,7 +202,7 @@ SignaturePad.prototype.fromDataURL = function (dataUrl) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   var image = new Image();
-  var ratio = options.ratio || window.devicePixelRatio || 1;
+  var ratio = 1;
   var width = options.width || this._canvas.width / ratio;
   var height = options.height || this._canvas.height / ratio;
 
