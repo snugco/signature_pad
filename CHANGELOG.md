@@ -1,5 +1,17 @@
 ## Changelog
 
+### 2.3.0
+#### Bug Fixes
+*   Updated demo to call `SignaturePad#clear` on window resize, to make sure that `SignaturePad#isEmpty` returns the correct value. Closes [#94](https://github.com/szimek/signature_pad/issues/94).
+
+#### Features
+*   Added `minDistance` option to skip points that are too close to each other (in px). It improves drawing quality (especially when drawing slowly), but introduces small lag. The default value is set to `5`. To switch back to the old behavior, set it to `0`.
+
+### 2.2.1
+#### Bug Fixes
+*   Fix `#toData`/`#fromData` to draw the last point in each curve as well. Fixes [#270](https://github.com/szimek/signature_pad/issues/270).
+*   Fix `#fromData` to properly set internal data structure. Fixes [#271](https://github.com/szimek/signature_pad/issues/271).
+
 ### 2.2.0
 #### Bug Fixes
 *   Export to SVG with correct pen colors. ([DynamoEffects](https://github.com/DynamoEffects) in [#260](https://github.com/szimek/signature_pad/pull/260))

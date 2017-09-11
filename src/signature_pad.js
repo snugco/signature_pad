@@ -10,6 +10,7 @@ function SignaturePad(canvas, options) {
   this.minWidth = opts.minWidth || 0.5;
   this.maxWidth = opts.maxWidth || 2.5;
   this.throttle = 'throttle' in opts ? opts.throttle : 16; // in miliseconds
+  this.minDistance = opts.minDistance || 5;
 
   if (this.throttle) {
     this._strokeMoveUpdate = throttle(SignaturePad.prototype._strokeUpdate, this.throttle);
@@ -150,26 +151,49 @@ SignaturePad.prototype._strokeUpdate = function (event) {
   const y = event.clientY;
 
   const point = this._createPoint(x, y);
-  const { curve, widths } = this._addPoint(point);
+  const lastPointGroup = this._data[this._data.length - 1];
+  const lastPoint = lastPointGroup && lastPointGroup[lastPointGroup.length - 1];
+  const isLastPointTooClose = lastPoint && point.distanceTo(lastPoint) < this.minDistance;
 
-  if (curve && widths) {
-    this._drawCurve(curve, widths.start, widths.end);
+  // Skip this point if it's too close to the previous one
+  if (!(lastPoint && isLastPointTooClose)) {
+    const { curve, widths } = this._addPoint(point);
+
+    if (curve && widths) {
+      this._drawCurve(curve, widths.start, widths.end);
+    }
+
+    this._data[this._data.length - 1].push({
+      x: point.x,
+      y: point.y,
+      time: point.time,
+      color: this.penColor,
+    });
   }
-
-  this._data[this._data.length - 1].push({
-    x: point.x,
-    y: point.y,
-    time: point.time,
-    color: this.penColor,
-  });
 };
 
 SignaturePad.prototype._strokeEnd = function (event) {
   const canDrawCurve = this.points.length > 2;
-  const point = this.points[0];
+  const point = this.points[0]; // Point instance
 
   if (!canDrawCurve && point) {
     this._drawDot(point);
+  }
+
+  if (point) {
+    const lastPointGroup = this._data[this._data.length - 1];
+    const lastPoint = lastPointGroup[lastPointGroup.length - 1]; // plain object
+
+    // When drawing a dot, there's only one point in a group, so without this check
+    // such group would end up with exactly the same 2 points.
+    if (!point.equals(lastPoint)) {
+      lastPointGroup.push({
+        x: point.x,
+        y: point.y,
+        time: point.time,
+        color: this.penColor,
+      });
+    }
   }
 
   if (typeof this.onEnd === 'function') {
@@ -462,6 +486,8 @@ SignaturePad.prototype.fromData = function (pointGroups) {
     (curve, widths) => this._drawCurve(curve, widths.start, widths.end),
     rawPoint => this._drawDot(rawPoint),
   );
+
+  this._data = pointGroups;
 };
 
 SignaturePad.prototype.toData = function () {
